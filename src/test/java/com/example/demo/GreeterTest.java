@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
 class GreeterTest {
@@ -7,7 +9,7 @@ class GreeterTest {
 	@Test
 	void shouldGreetHelloName() {
 
-		new Greeter();
+		assertEquals("Hello Bob", new Greeter().greet("Bob"));
 	}
 
 }
