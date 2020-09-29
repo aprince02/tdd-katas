@@ -47,9 +47,27 @@ class GreeterTest {
 	}
 	
 	@Test
-	void shouldGreetGoodMorning() throws Exception {
+	void shouldGreetGoodMorningAt6am() throws Exception {
 		
 		assertEquals("Good morning Bob", greeterAtTimeOfDay(6, 0).greet("bob"));
+	}
+
+	@Test
+	void shouldGreetGoodMorningAt1159am() throws Exception {
+		
+		assertEquals("Good morning Bob", greeterAtTimeOfDay(11, 59).greet("bob"));
+	}
+
+	@Test
+	void shouldGreetGoodEveningAt8pm() throws Exception {
+		
+		assertEquals("Good evening Bob", greeterAtTimeOfDay(18, 0).greet("bob"));
+	}
+
+	@Test
+	void shouldGreetHelloAt10pm() throws Exception {
+		
+		assertEquals("Hello Bob", greeterAtTimeOfDay(22, 0).greet("bob"));
 	}
 
 	private Greeter greeterAtTimeOfDay(int hours, int minutes) {

@@ -9,6 +9,8 @@ public class Greeter {
 
 	private static final LocalDateTime MORNING_BEGINS = localDateTime(6, 0);
 	private static final LocalDateTime AFTERNOON_BEGINS = localDateTime(12, 0);
+	private static final LocalDateTime EVENING_BEGINS = localDateTime(18, 0);
+	private static final LocalDateTime NIGHT_BEGINS = localDateTime(22, 0);
 	
 	private static LocalDateTime localDateTime(int hours, int minutes) {
 		return LocalDateTime.of(LocalDate.now(), LocalTime.of(hours, minutes));
@@ -44,6 +46,12 @@ public class Greeter {
 		}
 		if (LocalDateTime.now(clock).isBefore(AFTERNOON_BEGINS)) {
 			return "Good morning ";
+		}
+		if (LocalDateTime.now(clock).isBefore(EVENING_BEGINS)) {
+			return "Hello ";
+		}
+		if (LocalDateTime.now(clock).isBefore(NIGHT_BEGINS)) {
+			return "Good evening ";
 		}
 		return "Hello ";
 	}
