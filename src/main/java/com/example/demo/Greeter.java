@@ -5,6 +5,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class Greeter {
 
 	private static final LocalDateTime MORNING_BEGINS = localDateTime(6, 0);
@@ -28,21 +31,27 @@ public class Greeter {
 	public Object greet(String name) {
 
 		if (name == null) {
+			log.warn("null passed to greet");
 			throw new IllegalArgumentException("'name' cannot be null");
 		}
 		if (name.isBlank()) {
+			log.warn("blank passed to greet");
 			throw new IllegalArgumentException("'name' cannot be empty");
 		}
 		
 		String properName = name.trim();
 		properName = properName.substring(0, 1).toUpperCase() + properName.substring(1);
 		
-		return greeting() + properName;
+		String greeting = greeting();
+		
+		log.info("{}{}", greeting, properName);
+		
+		return greeting + properName;
 	}
 	
 	private String greeting() {
 		if (LocalDateTime.now(clock).isBefore(MORNING_BEGINS)) {
-			return "Hello ";
+			return "Good night ";
 		}
 		if (LocalDateTime.now(clock).isBefore(AFTERNOON_BEGINS)) {
 			return "Good morning ";
@@ -53,7 +62,7 @@ public class Greeter {
 		if (LocalDateTime.now(clock).isBefore(NIGHT_BEGINS)) {
 			return "Good evening ";
 		}
-		return "Hello ";
+		return "Good night ";
 	}
 
 }
